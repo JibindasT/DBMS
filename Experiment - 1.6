@@ -1,0 +1,94 @@
+
+
+
+
+	
+				#1.LIST PRODUCT NAME,PRICE EXCEPT SOAP ON PRICE ORDER
+				
+				
+
+
+mysql> select * from Product;
++------+--------+-------+
+| p_id | p_name | price |
++------+--------+-------+
+|    1 | pen    |    11 |
+|    2 | pencil |    17 |
+|    3 | soap   |    77 |
+|    4 | bag    |   495 |
+|    5 | bottle |   110 |
++------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select p_name,price  from Product where p_name!='soap' ORDER BY price;
++--------+-------+
+| p_name | price |
++--------+-------+
+| pen    |    11 |
+| pencil |    17 |
+| bottle |   110 |
+| bag    |   495 |
++--------+-------+
+4 rows in set (0.00 sec)
+
+
+
+
+				#2.FIND MINIMUM,MAXIMUM AND AVERAGE PRICE OF PRODUCTS
+
+
+
+mysql> select min(price),max(price),avg(price) from Product;
++------------+------------+------------+
+| min(price) | max(price) | avg(price) |
++------------+------------+------------+
+|         11 |        495 |   142.0000 |
++------------+------------+------------+
+1 row in set (0.00 sec)
+
+
+					#3.FIND NUMBER OF CUSTOMERS IN EACH CITY
+
+
+
+mysql> select * from Customer;
++-------------+-------+---------+-----------+------------+
+| customer_id | name  | address | city      | phone_no   |
++-------------+-------+---------+-----------+------------+
+|       10001 | jibin | jjjjjj  | calicut   | 6598565236 |
+|       10002 | allen | jjjjjj  | ekm       | 8564526535 |
+|       10003 | abu   | aaaaa   | tvm       | 6598563254 |
+|       10004 | anil  | bbbbb   | ekm       |       NULL |
+|       10005 | alok  | llllll  | kozhikode | 9465253654 |
++-------------+-------+---------+-----------+------------+
+5 rows in set (0.02 sec)
+
+mysql> select city,count(*) from Customer group by city;
++-----------+----------+
+| city      | count(*) |
++-----------+----------+
+| calicut   |        1 |
+| ekm       |        2 |
+| tvm       |        1 |
+| kozhikode |        1 |
++-----------+----------+
+4 rows in set (0.02 sec)
+			
+			
+			
+			
+			#4.FIND NUMBER OF CUSTOMERS IN EACH CITY, ONLY INCLUDE WITH MORE THAN 1 CUSTOMERS
+
+
+mysql> select city,count(*) from Customer group by city having count(city)>1;
++------+----------+
+| city | count(*) |
++------+----------+
+| ekm  |        2 |
++------+----------+
+1 row in set (0.00 sec)
+
+
+
+
+
