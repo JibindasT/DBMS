@@ -1,0 +1,52 @@
+
+
+    				 #1 .CREATE A TRIGGER TO HANDLE UPDATES TO THE CUSTOMER TABLE 
+
+
+
+
+
+
+
+mysql> create temporary table Cust(customer_id int primary key,name varchar(20),address varchar(150),city varchar(25),phone_no bigint)//
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> desc Cust//
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| customer_id | int          | NO   | PRI | NULL    | NULL  |
+| name        | varchar(20)  | YES  |     | NULL    | NULL  |
+| address     | varchar(150) | YES  |     | NULL    | NULL  |
+| city        | varchar(25)  | YES  |     | NULL    | NULL  |
+| phone_no    | bigint       | YES  |     | NULL    | NULL  |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> create trigger cust_trig after update on Customer for each row begin insert into Cust set customer_id=new.customer_id,name=new.name,address=new.address,city=new.city,phone_no=new.phone_no;end//
+Query OK, 0 rows affected (0.16 sec)
+
+
+mysql> update Customer set city="idukki" where customer_id=10002;
+    -> //
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Customer set  phone_no=9447443975 where customer_id=10001;
+    -> //
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Cust;
+    -> //
++-------------+--------+---------+---------+------------+
+| customer_id | name   | address | city    | phone_no   |
++-------------+--------+---------+---------+------------+
+|       10001 | jibin  | jjjjjj  | calicut | 9447443975 |
+|       10002 | aleeka | jjjjjj  | idukki  | 8564526535 |
++-------------+--------+---------+---------+------------+
+2 rows in set (0.00 sec)
+
