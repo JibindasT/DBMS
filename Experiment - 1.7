@@ -1,0 +1,117 @@
+			
+			
+			
+				#1.LIST THE PRODUCT NAME AND QUANTITY OF INVOICE ITEMS
+				
+				
+mysql> select * from Product;
++------+--------+-------+
+| p_id | p_name | price |
++------+--------+-------+
+|    1 | pen    |    11 |
+|    2 | pencil |    17 |
+|    3 | soap   |    77 |
+|    4 | bag    |   495 |
+|    5 | bottle |   110 |
++------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    101 |    1 |        2 |
+|    101 |    2 |        2 |
+|    102 |    3 |        1 |
+|    103 |    4 |        1 |
+|    104 |    5 |        2 |
+|    105 |    4 |        1 |
+|    104 |    4 |        4 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select p_name,quantity from Product  INNER JOIN Invoice_item  ON Product.p_id=Invoice_item.quantity;
++--------+----------+
+| p_name | quantity |
++--------+----------+
+| pencil |        2 |
+| pencil |        2 |
+| pen    |        1 |
+| pen    |        1 |
+| pencil |        2 |
+| pen    |        1 |
+| bag    |        4 |
++--------+----------+
+7 rows in set (0.00 sec)
+
+
+
+
+			#2.DISPLAY INVOICE DETAILS OF THE TRANSACTION DATED '31-01-2022'
+			
+			
+			
+			
+mysql> select * from Customer;
++-------------+-------+---------+-----------+------------+
+| customer_id | name  | address | city      | phone_no   |
++-------------+-------+---------+-----------+------------+
+|       10001 | jibin | jjjjjj  | calicut   | 6598565236 |
+|       10002 | allen | jjjjjj  | ekm       | 8564526535 |
+|       10003 | abu   | aaaaa   | tvm       | 6598563254 |
+|       10004 | anil  | bbbbb   | ekm       |       NULL |
+|       10005 | alok  | llllll  | kozhikode | 9465253654 |
++-------------+-------+---------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Product;
++------+--------+-------+
+| p_id | p_name | price |
++------+--------+-------+
+|    1 | pen    |    11 |
+|    2 | pencil |    17 |
+|    3 | soap   |    77 |
+|    4 | bag    |   495 |
+|    5 | bottle |   110 |
++------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    101 |    1 |        2 |
+|    101 |    2 |        2 |
+|    102 |    3 |        1 |
+|    103 |    4 |        1 |
+|    104 |    5 |        2 |
+|    105 |    4 |        1 |
+|    104 |    4 |        4 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select * from Invoice_master;
++--------+-------------+------------+
+| inv_id | customer_id | inv_date   |
++--------+-------------+------------+
+|    101 |       10001 | 2021-01-25 |
+|    102 |       10002 | 2021-03-22 |
+|    103 |       10004 | 2023-09-26 |
+|    104 |       10004 | 2022-08-15 |
+|    105 |       10001 | 2023-07-16 |
++--------+-------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Customer inner join Invoice_master on Customer.customer_id=Invoice_master.customer_id inner join Invoice_item on Invoice_master.inv_id=Invoice_item.inv_id inner join Product on Invoice_item.p_id=Product.p_id where inv_date='2023-07-16';
++-------------+-------+---------+---------+------------+--------+-------------+------------+--------+------+----------+------+--------+-------+
+| customer_id | name  | address | city    | phone_no   | inv_id | customer_id | inv_date   | inv_id | p_id | quantity | p_id | p_name | price |
++-------------+-------+---------+---------+------------+--------+-------------+------------+--------+------+----------+------+--------+-------+
+|       10001 | jibin | jjjjjj  | calicut | 6598565236 |    105 |       10001 | 2023-07-16 |    105 |    4 |        1 |    4 | bag    |   495 |
++-------------+-------+---------+---------+------------+--------+-------------+------------+--------+------+----------+------+--------+-------+
+1 row in set (0.00 sec)
+			
+			
+			
+			
+			
+			
