@@ -1,0 +1,235 @@
+
+
+
+
+                             #1 .WRITE A MongoDB QUERY TO CREATE AN INVOICE ATABASE AND COLLECTIONS (CUSTOMER,PRODUCT)AND ITS CORRESPONDING DOCUMENTS.
+
+
+
+
+
+
+test> use INVOICE
+
+INVOICE> db.createCollection('customer')
+{ ok: 1 }
+INVOICE> db.createCollection('product')
+{ ok: 1 }
+
+
+INVOICE> db.customer.insert({'name':'jibin','address':'jjjjjj','city':'kozhikode','phone':'6598565236'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('661371c69fbc1635daef634d') }
+}
+INVOICE> db.customer.insert({'name':'allen','address':'jjjjjj','city':'ekm','phone':'8564526535'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('661371f59fbc1635daef634e') }
+}
+INVOICE> db.customer.insert({'name':'abu','address':'aaaaa','city':'tvm'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('661372549fbc1635daef634f') }
+}
+INVOICE> db.customer.insert({'name':'anil','address':'bbbbb','city':'ekm'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('661372689fbc1635daef6350') }
+}
+INVOICE> db.customer.insert({'name':'alok','address':'llllll','city':'kozhikode','phone':'9465253654'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613728f9fbc1635daef6351') }
+}
+
+
+
+			#2.WRITE A MongoDB QUERY TO FIND ALL DOCUMENTS FROM THE COLLECTION CUSTOMER
+
+
+
+
+
+INVOICE> db.customer.find()
+[
+  {
+    _id: ObjectId('661371c69fbc1635daef634d'),
+    name: 'jibin',
+    address: 'jjjjjj',
+    city: 'kozhikode',
+    phone: '6598565236'
+  },
+  {
+    _id: ObjectId('661371f59fbc1635daef634e'),
+    name: 'allen',
+    address: 'jjjjjj',
+    city: 'ekm',
+    phone: '8564526535'
+  },
+  {
+    _id: ObjectId('661372549fbc1635daef634f'),
+    name: 'abu',
+    address: 'aaaaa',
+    city: 'tvm'
+  },
+  {
+    _id: ObjectId('661372689fbc1635daef6350'),
+    name: 'anil',
+    address: 'bbbbb',
+    city: 'ekm'
+  },
+  {
+    _id: ObjectId('6613728f9fbc1635daef6351'),
+    name: 'alok',
+    address: 'llllll',
+    city: 'kozhikode',
+    phone: '9465253654'
+  }
+]
+
+
+
+
+INVOICE> db.customer.findOne()
+{
+  _id: ObjectId('661371c69fbc1635daef634d'),
+  name: 'jibin',
+  address: 'jjjjjj',
+  city: 'kozhikode',
+  phone: '6598565236'
+}
+
+
+
+
+				#3.WRITE MongoDB QUERY TO UPDATE THE CITY UN THE COLLECTION CUSTOMER
+				
+				
+				
+				
+				
+				
+INVOICE> db.customer.updateMany({'city':'ekm'},{$set:{'city':'ernakulam'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+INVOICE> db.customer.find()
+[
+  {
+    _id: ObjectId('661371c69fbc1635daef634d'),
+    name: 'jibin',
+    address: 'jjjjjj',
+    city: 'kozhikode',
+    phone: '6598565236'
+  },
+  {
+    _id: ObjectId('661371f59fbc1635daef634e'),
+    name: 'allen',
+    address: 'jjjjjj',
+    city: 'ernakulam',
+    phone: '8564526535'
+  },
+  {
+    _id: ObjectId('661372549fbc1635daef634f'),
+    name: 'abu',
+    address: 'aaaaa',
+    city: 'tvm'
+  },
+  {
+    _id: ObjectId('661372689fbc1635daef6350'),
+    name: 'anil',
+    address: 'bbbbb',
+    city: 'ernakulam'
+  },
+  {
+    _id: ObjectId('6613728f9fbc1635daef6351'),
+    name: 'alok',
+    address: 'llllll',
+    city: 'kozhikode',
+    phone: '9465253654'
+  }
+]
+INVOICE> 
+
+
+
+
+
+
+			#4.WRITE A MongoDB QUERY TO DELETE THE FIRST MATCHED DOCUMENT WHOSE CITY IS "KOZHIKODE"
+				
+				
+				
+				
+
+
+INVOICE> db.customer.deleteOne({'city':'kozhikode'})
+{ acknowledged: true, deletedCount: 1 }
+INVOICE> db.customer.find()
+[
+  {
+    _id: ObjectId('661371f59fbc1635daef634e'),
+    name: 'allen',
+    address: 'jjjjjj',
+    city: 'ernakulam',
+    phone: '8564526535'
+  },
+  {
+    _id: ObjectId('661372549fbc1635daef634f'),
+    name: 'abu',
+    address: 'aaaaa',
+    city: 'tvm'
+  },
+  {
+    _id: ObjectId('661372689fbc1635daef6350'),
+    name: 'anil',
+    address: 'bbbbb',
+    city: 'ernakulam'
+  },
+  {
+    _id: ObjectId('6613728f9fbc1635daef6351'),
+    name: 'alok',
+    address: 'llllll',
+    city: 'kozhikode',
+    phone: '9465253654'
+  }
+]
+INVOICE> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+				
+				
+				
+
+
