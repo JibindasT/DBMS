@@ -1,0 +1,108 @@
+
+
+
+
+
+
+			#1.WRITE A MongoDB QUERY TO DISPLAY THE CUSTOMER DOCUMENTS HAVING CITY "KOZHIKODE","TVM"
+
+
+
+
+
+
+INVOICE> db.customer.find({$or:[{'city':'kozhikode'},{'city':'tvm'}]})
+[
+  {
+    _id: ObjectId('661372549fbc1635daef634f'),
+    name: 'abu',
+    address: 'aaaaa',
+    city: 'tvm'
+  },
+  {
+    _id: ObjectId('6613728f9fbc1635daef6351'),
+    name: 'alok',
+    address: 'llllll',
+    city: 'kozhikode',
+    phone: '9465253654'
+  }
+]
+
+
+
+
+			#2.WRITE A MongoDB QUERY TO DISPLAY ALL CUSTOMER DOCUMENTS WHO HAVE AGE>50
+			
+			
+			
+			
+INVOICE> db.customer.insert({"name":'ajin','address':'arunajal','city':'alpy','age':59})
+		
+		
+INVOICE> db.customer.find({"age":{$gt:50}}).pretty()
+[
+  {
+    _id: ObjectId('661ca61f65b011b5d7ef634c'),
+    name: 'ajin',
+    address: 'arunajal',
+    city: 'alpy',
+    age: 59
+  }
+]
+
+
+	
+			
+			
+			#3. write a MongoDB query to find customer documents who not live in 'tvm'		
+			
+			
+			
+			
+			
+ICE> db.customer.find({"city":{$ne:"tvm"}}).pretty()
+[
+  {
+    _id: ObjectId('661371f59fbc1635daef634e'),
+    name: 'allen',
+    address: 'jjjjjj',
+    city: 'ernakulam',
+    phone: '8564526535'
+  },
+  {
+    _id: ObjectId('661372689fbc1635daef6350'),
+    name: 'anil',
+    address: 'bbbbb',
+    city: 'ernakulam'
+  },
+  {
+    _id: ObjectId('6613728f9fbc1635daef6351'),
+    name: 'alok',
+    address: 'llllll',
+    city: 'kozhikode',
+    phone: '9465253654'
+  },
+  {
+    _id: ObjectId('661ca61f65b011b5d7ef634c'),
+    name: 'ajin',
+    address: 'arunajal',
+    city: 'alpy',
+    age: 59
+  }
+]
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
